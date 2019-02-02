@@ -1,26 +1,31 @@
 @startuml
 
-abstract class AbstractList
-abstract AbstractCollection
-interface List
-interface Collection
-
-List <|-- AbstractList
-Collection <|-- AbstractCollection
-
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
-
-class ArrayList {
-Object[] elementData
-size()
-}
-
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
-}
-
+abstract Game
+class BlackJack
+class HighAndLow
+abstract Actor
+class BlackJackActor
+class Player
+class Dealer
+class HighAndLowActor
+class GameController
+class HighAndLowController
+class BlackJackSession
+class HighAndLowSession
+class Deck
+class Card
+Game <|-- BlackJack
+Game <|-- HighAndLow
+Actor <|-- BlackJackActor
+Actor <|-- HighAndLowActor
+BlackJackActor <|-- Player
+BlackJackActor <|-- Dealer
+Deck <-- Card
+GameController <-- BlackJack
+HighAndLowController <-- HighAndLow
+BlackJack <-- Actor
+HighAndLow <-- Actor
+GameController <-- BlackJackSession
+HighAndLowController <-- HighAndLowSession
+Actor <-- Deck
 @enduml
