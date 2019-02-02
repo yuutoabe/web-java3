@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+ディーラー
+<table border="1">
+<tr>
+<th>マーク</th>
+<th>数字</th>
+<tr>
+<td th:text="${dSuit}"></td>
+<td th:text="${dNumber}"></td>
+</tr>
+<tr>
+<td >???</td>
+<td >???</td>
+</tr>
+
+
+</table>
+
+
+プレイヤー
+<table border="1">
+<tr>
+<th>マーク</th>
+<th>数字</th>
+</tr>
+<tr th:each="card : ${pHand}">
+<td th:text="${card.suit}"></td>
+<td th:text="${card.number}"></td>
+</tr>
+</table>
+
+合計
+<h3 th:text="${pCount}" ></h3>
+
+<form action="/hit">
+		<input type="submit" value="hit">
+		</form>
+		<form action="/stand">
+		<input type="submit" value="stand">
+		</form>
+
+</body>
+</html>

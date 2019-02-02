@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<table border="1">
+<tr>
+<th>マーク</th>
+<th>数字</th>
+</tr>
+<tr th:each="card : ${card}">
+<td th:text="${card.suit}"></td>
+<td th:text="${card.number}"></td>
+</tr>
+</table>
+
+スコア
+<h2 th:text="${result}"></h2>
+
+<form action="/highlow">
+		<input type="submit" value="replay">
+		</form>
+		<form action="/top">
+		<input type="submit" value="top">
+		</form>
+</body>
+</html>

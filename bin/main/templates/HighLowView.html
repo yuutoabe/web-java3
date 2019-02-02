@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table border="1">
+<tr>
+<th>マーク</th>
+<th>数字</th>
+</tr>
+<tr th:each="card : ${card}">
+<td th:text="${card.suit}"></td>
+<td th:text="${card.number}"></td>
+</tr>
+</table>
+
+<form action="/high">
+		<input type="submit" value="high">
+		</form>
+		<form action="/low">
+		<input type="submit" value="low">
+		</form>
+
+</body>
+</html>
