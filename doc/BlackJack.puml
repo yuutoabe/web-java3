@@ -1,8 +1,29 @@
 @startuml
+== 初期化処理==
 GameController -> BlackJack: 初期化処理
 BlackJack --> Player: 最初の2枚を配る
 BlackJack --> Dealer: 最初の2枚を配る
 GameController --> BlackJackSession: セッション情報保存
 alt Blackjack
     GameController --> ResultView :結果を出力
+else
+    GameController --> BlackJAckView:現在の状態を表示
+
+== hit ==
+GameController --> BlackJackSesion: セッション情報取得
+GameController -> BlackJack: 1枚引く
+BlackJack --> Player: 1枚引く
+GameController --> BlackJackSession: セッション情報保存
+alt 手札 < 21
+    GameController --> BlackJAckView:現在の状態を表示
+else
+    GameController --> ResultView :結果を出力
+
+== stand ==
+GameController --> BlackJackSesion: セッション情報取得
+GameController -> BlackJack: 手札が17以上になるまで引く
+BlackJack --> Dealer: 手札が17以上になるまで引く
+GameController --> BlackJackSession: セッション情報保存
+GameController --> ResultView :結果を出力
+
 @enduml
