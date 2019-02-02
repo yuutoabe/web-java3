@@ -1,0 +1,8 @@
+@startuml
+GameController -> BlackJack: 初期化処理
+BlackJack --> Player: 最初の2枚を配る
+BlackJack --> Dealer: 最初の2枚を配る
+GameController --> BlackJackSession: セッション情報保存
+alt Blackjack
+    GameController --> ResultView :結果を出力
+@enduml
