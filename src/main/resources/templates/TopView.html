@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
 </head>
 <body>
 遊ぶゲームを選択
 <form action="/blackjack">
-		<input type="submit" value="BlackJackをプレイする。">
-		</form>
-		<form action="/highlow">
-		<input type="submit" value="High and Lowをプレイする。">
-		</form>
+    <input type="image" th:src="@{/BJ.jpg}" width="100" height="100">
+</form>
+<form action="/highlow">
+    <input type="image" th:src="@{/mig.jpg}" width="100" height="100">
+</form>
 
 </body>
 </html>

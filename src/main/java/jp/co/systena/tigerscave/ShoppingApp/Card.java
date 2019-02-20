@@ -2,12 +2,24 @@ package jp.co.systena.tigerscave.ShoppingApp;
 
 import lombok.Value;
 
+/**
+ * Cardクラス
+ */
 @Value
 public class Card {
-  public enum Suit {
-    SPADE, HEART, CLUB, DIAMOND
-  }
+    /**
+     * マーク列挙型
+     */
+    public enum Suit {
+        SPADE, HEART, CLUB, DIAMOND
+    }
 
-  public int number;
-  public Suit suit;
+    /**
+     * 数字
+     */
+    private int number;
+    /**
+     * マーク
+     */
+    private Suit suit;
 }

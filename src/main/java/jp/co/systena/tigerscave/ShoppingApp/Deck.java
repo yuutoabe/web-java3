@@ -8,12 +8,6 @@ import lombok.val;
 
 public class Deck {
 
-  private static Deck INSTANCE = new Deck();
-
-  public static Deck getIncetance() {
-    return INSTANCE;
-  }
-
   private Map<Card, Boolean> cardMap = new LinkedHashMap<>();
 
   public Deck() {
