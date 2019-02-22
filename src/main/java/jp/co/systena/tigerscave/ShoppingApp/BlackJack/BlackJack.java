@@ -2,6 +2,7 @@ package jp.co.systena.tigerscave.ShoppingApp.BlackJack;
 
 import java.util.List;
 
+import jp.co.systena.tigerscave.ShoppingApp.Deck;
 import jp.co.systena.tigerscave.ShoppingApp.Game;
 import lombok.Getter;
 import lombok.val;
@@ -15,16 +16,23 @@ public class BlackJack extends Game {
     /**
      * Dealer
      */
-    private Dealer dealer;
+    private BlackJackActor dealer;
     /**
      * Player
      */
-    private Player player;
+    private BlackJackActor player;
+
+
+    /**
+     * Deck
+     */
+    private Deck deck = new Deck();
+
 
     @Override
     public void initGame() {
-        player = new Player();
-        dealer = new Dealer();
+        player = new Player(deck);
+        dealer = new Dealer(deck);
     }
 
     @Override
@@ -34,13 +42,22 @@ public class BlackJack extends Game {
 
     public boolean executeGame(boolean isPlayerTurn) {
         if (isPlayerTurn) {
-            if (player.play()) {
-                dealer.play();
+            if (player.play(deck.getCard())) {
+                if (player.isSoftHand()) {
+                    if (player.getCount().get(0) > 21 && player.getCount().get(1) > 21) {
+                        return true;
+                    }
+                } else {
+                    if (player.getCount().get(0) > 21) {
+                        return true;
+                    }
+                }
+                dealer.play(deck.getCard());
                 return true;
             }
             return false;
         } else {
-            return dealer.play();
+            return dealer.play(deck.getCard());
         }
     }
 

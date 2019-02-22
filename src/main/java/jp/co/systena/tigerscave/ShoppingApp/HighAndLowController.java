@@ -19,7 +19,7 @@ public class HighAndLowController {
         val game = new HighAndLow();
         game.initGame();
         session.setHighAndLow(game);
-        modelAndView.addObject("card", game.getCardList());
+        modelAndView.addObject("card", ImagePathUtility.getCardImagePathList(game.getCardList()));
         modelAndView.setViewName("HighLowView");
         return modelAndView;
     }
@@ -28,11 +28,11 @@ public class HighAndLowController {
     public ModelAndView high(ModelAndView modelAndView) {
         val game = session.getHighAndLow();
         if (game.executeGame(true)) {
-            modelAndView.addObject("card", game.getCardList());
+            modelAndView.addObject("card", ImagePathUtility.getCardImagePathList(game.getCardList()));
             modelAndView.setViewName("HighLowView");
         } else {
             modelAndView.addObject("result", game.endGame());
-            modelAndView.addObject("card", game.getCardList());
+            modelAndView.addObject("card", ImagePathUtility.getCardImagePathList(game.getCardList()));
             modelAndView.setViewName("HighLowResultView");
         }
         return modelAndView;
@@ -43,11 +43,11 @@ public class HighAndLowController {
     public ModelAndView low(ModelAndView modelAndView) {
         val game = session.getHighAndLow();
         if (game.executeGame(false)) {
-            modelAndView.addObject("card", game.getCardList());
+            modelAndView.addObject("card", ImagePathUtility.getCardImagePathList(game.getCardList()));
             modelAndView.setViewName("HighLowView");
         } else {
             modelAndView.addObject("result", game.endGame());
-            modelAndView.addObject("card", game.getCardList());
+            modelAndView.addObject("card", ImagePathUtility.getCardImagePathList(game.getCardList()));
             modelAndView.setViewName("HighLowResultView");
         }
         return modelAndView;

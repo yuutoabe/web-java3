@@ -1,14 +1,25 @@
 package jp.co.systena.tigerscave.ShoppingApp.BlackJack;
 
+import jp.co.systena.tigerscave.ShoppingApp.Card;
+import jp.co.systena.tigerscave.ShoppingApp.Deck;
 import lombok.val;
 
 /**
  * BlackJackPlayerクラス
  */
 public class Player extends BlackJackActor {
+    /**
+     * constructor
+     *
+     * @param deck Deck
+     */
+    Player(Deck deck) {
+        super(deck);
+    }
+
     @Override
-    public boolean play() {
-        deal();
+    public boolean play(Card card) {
+        deal(card);
         //手札の点数が21を超えた場合True
         if (getCount().size() == 2) {
             //Aがあり点数が2通りある場合

@@ -9,7 +9,7 @@ import jp.co.systena.tigerscave.ShoppingApp.BlackJack.BlackJackSession;
 import lombok.val;
 
 @Controller
-public class GameController {
+public class BlackJackController {
 
     @Autowired
     private BlackJackSession session;
@@ -20,16 +20,15 @@ public class GameController {
         game.initGame();
         session.setBlackJack(game);
         if (game.getPlayer().getCount().contains(21)) {
-            modelAndView.addObject("dHand", game.getDealer().getMyHand());
+            modelAndView.addObject("dHand",  ImagePathUtility.getCardImagePathList(game.getDealer().getMyHand()));
             modelAndView.addObject("dCount", game.getDealer().getCountString());
             modelAndView.addObject("result", game.endGame());
             modelAndView.addObject("pHand", game.getPlayer().getMyHand());
             modelAndView.addObject("pCount", game.getPlayer().getCountString());
             modelAndView.setViewName("ResultView");
         } else {
-            modelAndView.addObject("dSuit", game.getDealer().getMyHand().get(0).getSuit());
-            modelAndView.addObject("dNumber", game.getDealer().getMyHand().get(0).getNumber());
-            modelAndView.addObject("pHand", game.getPlayer().getMyHand());
+            modelAndView.addObject("dHand",ImagePathUtility.getCardImagePath(game.getDealer().getMyHand().get(0)));
+            modelAndView.addObject("pHand", ImagePathUtility.getCardImagePathList(game.getPlayer().getMyHand()));
             modelAndView.addObject("pCount", game.getPlayer().getCountString());
             modelAndView.setViewName("BlackJackView");
         }
@@ -41,16 +40,15 @@ public class GameController {
     public ModelAndView playerHit(ModelAndView modelAndView) {
         val game = session.getBlackJack();
         if (!game.executeGame(true)) {
-            modelAndView.addObject("dSuit", game.getDealer().getMyHand().get(0).getSuit());
-            modelAndView.addObject("dNumber", game.getDealer().getMyHand().get(0).getNumber());
+            modelAndView.addObject("dHand",ImagePathUtility.getCardImagePath(game.getDealer().getMyHand().get(0)));
             modelAndView.setViewName("BlackJackView");
         } else {
-            modelAndView.addObject("dHand", game.getDealer().getMyHand());
+            modelAndView.addObject("dHand",  ImagePathUtility.getCardImagePathList(game.getDealer().getMyHand()));
             modelAndView.addObject("dCount", game.getDealer().getCountString());
             modelAndView.addObject("result", game.endGame());
             modelAndView.setViewName("ResultView");
         }
-        modelAndView.addObject("pHand", game.getPlayer().getMyHand());
+        modelAndView.addObject("pHand", ImagePathUtility.getCardImagePathList(game.getPlayer().getMyHand()));
         modelAndView.addObject("pCount", game.getPlayer().getCountString());
         session.setBlackJack(game);
         return modelAndView;
@@ -60,8 +58,8 @@ public class GameController {
     public ModelAndView playerStand(ModelAndView modelAndView) {
         val game = session.getBlackJack();
         game.executeGame(false);
-        modelAndView.addObject("dHand", game.getDealer().getMyHand());
-        modelAndView.addObject("pHand", game.getPlayer().getMyHand());
+        modelAndView.addObject("dHand",  ImagePathUtility.getCardImagePathList(game.getDealer().getMyHand()));
+        modelAndView.addObject("pHand", ImagePathUtility.getCardImagePathList(game.getPlayer().getMyHand()));
         modelAndView.addObject("dCount", game.getDealer().getCountString());
         modelAndView.addObject("pCount", game.getPlayer().getCountString());
         modelAndView.addObject("result", game.endGame());

@@ -19,22 +19,13 @@ public class BlackJackActor extends Actor {
      */
     @Getter
     protected List<Card> myHand = new ArrayList<Card>();
-    /**
-     * Aがある手札かどうか
-     */
-    private boolean isSoftHand;
-
-    /**
-     * Deck
-     */
-    private Deck deck = new Deck();
 
     /**
      * constructor
      */
-    BlackJackActor() {
-        deal();
-        deal();
+    BlackJackActor(Deck deck) {
+        deal(deck.getCard());
+        deal(deck.getCard());
     }
 
 
@@ -57,7 +48,7 @@ public class BlackJackActor extends Actor {
         }
         result.add(temp);
         //Aがない場合はreturn
-        if (!isSoftHand) {
+        if (!isSoftHand()) {
             return result;
         }
         //Aを11として扱った場合の点数
@@ -82,15 +73,22 @@ public class BlackJackActor extends Actor {
     /**
      * Cardを一枚配る。
      */
-    void deal() {
-        val card = deck.getCard();
-        isSoftHand = card.getNumber() == 1;
+    void deal(Card card) {
         myHand.add(card);
+    }
+
+    boolean isSoftHand(){
+        for (val card : myHand){
+            if(card.getNumber() == 1){
+                return true;
+            }
+        }
+        return false;
     }
 
 
     @Override
-    public boolean play() {
+    public boolean play(Card card) {
         return false;
     }
 

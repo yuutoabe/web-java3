@@ -2,15 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Insert title here</title>
+    <title>カードゲーム</title>
+    <link rel="stylesheet" media="all" th:href="@{/css/style.css}"/>
 </head>
 <body>
-遊ぶゲームを選択
-<form action="/blackjack">
-    <input type="image" th:src="@{/BJ.jpg}" width="100" height="100">
+
+<h1>遊ぶゲームを選択</h1>
+
+<form action="/blackjack" class="top">
+    <input type="image" th:src="@{/BJ.jpg}" width="200" height="100">
 </form>
-<form action="/highlow">
-    <input type="image" th:src="@{/mig.jpg}" width="100" height="100">
+<form action="/highlow" class="top">
+    <input type="image" th:src="@{/mig.jpg}" width="200" height="100">
 </form>
 
 </body>
